@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart To-Do List - Professional Task Manager</title>
+  <meta name="description" content="A modern, feature-rich task management application with priority levels and smart filtering">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="background-elements">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo-icon">✓</div>
+          <h1 class="app-title">Smart To-Do</h1>
+          <p class="app-subtitle">Stay organized, stay productive</p>
+        </div>
+        
+        <div class="stats-dashboard">
+          <div class="stat-card stat-total">
+            <div class="stat-icon">📋</div>
+            <div class="stat-info">
+              <span class="stat-number" id="totalTasks">0</span>
+              <span class="stat-label">Total Tasks</span>
+            </div>
+          </div>
+          <div class="stat-card stat-active">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <span class="stat-number" id="activeTasks">0</span>
+              <span class="stat-label">Active</span>
+            </div>
+          </div>
+          <div class="stat-card stat-completed">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+              <span class="stat-number" id="completedTasks">0</span>
+              <span class="stat-label">Completed</span>
+            </div>
+          </div>
+          <button id="themeToggle" class="theme-toggle" title="Toggle dark/light mode">
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Task Input Section -->
+    <section class="input-section">
+      <div class="input-container">
+        <div class="input-group">
+          <div class="input-icon">✏️</div>
+          <input 
+            type="text" 
+            id="taskInput" 
+            class="task-input"
+            placeholder="What needs to be accomplished today?" 
+            maxlength="200"
+            aria-label="New task input"
+          >
+          <div class="input-counter">
+            <span id="charCounter">0</span>/200
+          </div>
+        </div>
+        
+        <div class="input-controls">
+          <div class="priority-selector">
+            <label for="prioritySelect" class="priority-label">Priority</label>
+            <select id="prioritySelect" class="priority-select" aria-label="Task priority">
+              <option value="low">🟢 Low</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="high">🔴 High</option>
+            </select>
+          </div>
+          
+          <button id="addTaskBtn" class="add-task-btn" aria-label="Add new task">
+            <span class="btn-icon">+</span>
+            <span class="btn-text">Add Task</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <div class="filter-container">
+        <div class="filter-label">Filter Tasks:</div>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">
+            <span class="filter-icon">📁</span>
+            <span>All Tasks</span>
+          </button>
+          <button class="filter-btn" data-filter="active">
+            <span class="filter-icon">⚡</span>
+            <span>Active</span>
+          </button>
+          <button class="filter-btn" data-filter="completed">
+            <span class="filter-icon">✅</span>
+            <span>Completed</span>
+          </button>
+          <button class="filter-btn" data-filter="high">
+            <span class="filter-icon">🔥</span>
+            <span>High Priority</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task List Section -->
+    <section class="tasks-section">
+      <div class="tasks-container">
+        <div class="tasks-header">
+          <h2 class="tasks-title">Your Tasks</h2>
+          <div class="tasks-actions">
+            <button id="clearCompletedBtn" class="clear-btn" title="Clear completed tasks">
+              <span class="clear-icon">🗑️</span>
+            </button>
+          </div>
+        </div>
+        
+        <ul id="taskList" class="task-list">
+          <!-- Tasks will be dynamically inserted here -->
+        </ul>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🎉</div>
+          <h3 class="empty-title">Ready to be productive?</h3>
+          <p class="empty-description">Add your first task above and start checking things off your list!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Export/Import Section -->
+    <section class="tools-section">
+      <div class="tools-container">
+        <div class="tools-header">
+          <h3 class="tools-title">Task Management</h3>
+        </div>
+        <div class="tools-buttons">
+          <button id="exportBtn" class="tool-btn export-btn">
+            <span class="tool-icon">📤</span>
+            <span class="tool-text">Export Tasks</span>
+          </button>
+          <button id="importBtn" class="tool-btn import-btn">
+            <span class="tool-icon">📥</span>
+            <span class="tool-text">Import Tasks</span>
+          </button>
+          <input type="file" id="importFile" accept=".json" class="hidden" aria-label="Import tasks file">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer" class="notification-container"></div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Processing...</p>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
