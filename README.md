@@ -156,7 +156,6 @@ smart-todo-app/
 **Kimiya Razdar**  
 Razdarkim@gmail.com  
 [GitHub](https://github.com/Kimiya00)  
-[Portfolio](https://kimiya00.github.io)
 
 ---
 
