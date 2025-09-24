@@ -1,4 +1,4 @@
-# Smart To-Do List
+# Smart To-Do App
 
 A modern, feature-rich task management application that goes beyond basic CRUD. Built with vanilla JavaScript to showcase clean architecture, advanced DOM manipulation, and professional UI design.
 
@@ -21,15 +21,15 @@ Most demo todo apps lose your data when you refresh and lack real-world features
 ## Quick Start
 
 ```bash
-git clone https://github.com/Kimiya00/smart-todo-list
-cd smart-todo-list
+git clone https://github.com/Kimiya00/smart-todo-app
+cd smart-todo-app
 # Open with Live Server or serve locally:
 python -m http.server 8000
 ```
 
 No build process needed. Runs directly in any modern browser.
 
-**[Try it live →](https://kimiya00.github.io/smart-todo-list)**
+**[Try it live →](https://kimiya00.github.io/smart-todo-app)**
 
 ## Key Features
 
@@ -125,7 +125,7 @@ Works in all modern browsers supporting ES6 classes and CSS custom properties:
 ## Project Structure
 
 ```
-smart-todo-list/
+smart-todo-app/
 ├── index.html          # Main HTML structure
 ├── css/
 │   └── style.css      # Professional styling with glassmorphism
