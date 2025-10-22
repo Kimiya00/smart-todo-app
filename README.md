@@ -29,7 +29,7 @@ python -m http.server 8000
 
 No build process needed. Runs directly in any modern browser.
 
-**[Try it live →](https://kimiya00.github.io/smart-todo-app)**
+**[Try it live →](https://smart-todo-app1.netlify.app/)**
 
 ## Key Features
 
